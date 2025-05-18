@@ -1,0 +1,189 @@
+ a{
+        text-decoration: none;
+        color: inherit;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      height: 100vh;
+      background-color: #f3f6fb;
+    }
+
+    .sidebar {
+      width: 260px;
+      background-color: #143f7d;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo {
+      width: 130px;
+      margin-bottom: 20px;
+    }
+
+
+    .profile-info {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .profile-info p {
+      font-size: 12px;
+      color: #cbd4f0;
+    }
+
+    .sidebar h4 {
+      font-size: 12px;
+      margin: 20px 0 10px;
+      text-transform: uppercase;
+      color: #9bb4df;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      background-color: #1c4c99;
+    }
+
+    .nav-item span {
+      margin-left: 10px;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 20px 40px;
+      overflow-y: auto;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .top-bar span {
+      color: #555;
+      font-size: 14px;
+    }
+
+    .breadcrumb {
+      color: #7b84d4;
+      font-size: 14px;
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .cards {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      flex: 1;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .card strong {
+      font-weight: 600;
+    }
+    .right h4{
+        margin-left: 60;
+    }
+    .card_orange{
+        order: 1;
+    }
+        .dash body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f5f5f5;
+      margin: 0;
+    }
+
+    .cdash {
+      width: 280px;
+      height: 120px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #fcae67, #f57c00);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 25px;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card-content h2 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    .card-content p {
+      margin: 0;
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    .card-icon {
+      background: white;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-icon img {
+      width: 30px;
+      height: 30px;
+    }  
