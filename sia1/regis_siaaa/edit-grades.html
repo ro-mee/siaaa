@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Grades</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      min-height: 100vh;
+    }
+    .content {
+      flex: 1;
+      padding: 40px;
+      background: #f5f5f5;
+    }
+    h2 {
+      font-size: 2rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .student-info {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .grade-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+    .grade-item {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .actions {
+      margin-top: 20px;
+    }
+    .save-btn {
+      background: #2196f3;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .save-btn:hover {
+      background: #1976d2;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="bcplogo.png" alt="School Logo" class="logo" />
+    <p class="email">registrar123@gmail.com</p>
+    <a href="index.html" class="nav-btn">← Back</a>
+  </div>
+
+  <div class="content">
+    <h2>Grades</h2>
+    <div class="student-info" id="studentInfo"></div>
+    <form id="gradeForm" class="grade-box">
+      <div class="grade-item">
+        <label for="prelim">Prelim</label>
+        <input type="number" step="0.01" id="prelim" required>
+      </div>
+      <div class="grade-item">
+        <label for="midterm">Midterm</label>
+        <input type="number" step="0.01" id="midterm" required>
+      </div>
+      <div class="grade-item">
+        <label for="final">Final</label>
+        <input type="number" step="0.01" id="final" required>
+      </div>
+      <div class="actions">
+        <button type="submit" class="save-btn">Save Grades</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Function to generate random grade between 75 and 99
+    function generateRandomGrade() {
+      // Generate random number between 75 and 99
+      const grade = Math.random() * (99 - 75) + 75;
+      // Round to 2 decimal places
+      return Math.round(grade * 100) / 100;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const studentName = urlParams.get('name');
+    const course = urlParams.get('course');
+    const subject = urlParams.get('subject');
+
+    // Generate random grades
+    const randomGrades = {
+      prelim: generateRandomGrade(),
+      midterm: generateRandomGrade(),
+      final: generateRandomGrade()
+    };
+
+    document.getElementById('studentInfo').textContent = `${studentName} - ${course}`;
+    if (subject) {
+      const subjDisplay = document.createElement('div');
+      subjDisplay.style.margin = '10px 0';
+      subjDisplay.style.fontWeight = 'bold';
+      subjDisplay.textContent = `Subject: ${subject}`;
+      document.getElementById('studentInfo').appendChild(subjDisplay);
+    }
+
+    // Set random grades to input fields
+    document.getElementById('prelim').value = randomGrades.prelim;
+    document.getElementById('midterm').value = randomGrades.midterm;
+    document.getElementById('final').value = randomGrades.final;
+
+    document.getElementById('gradeForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const updatedGrades = {
+        prelim: document.getElementById('prelim').value,
+        midterm: document.getElementById('midterm').value,
+        final: document.getElementById('final').value
+      };
+      console.log('Updated grades:', updatedGrades);
+      alert('Grades updated successfully!');
+    });
+
+    // Add input validation
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+      input.addEventListener('input', function() {
+        let value = parseFloat(this.value);
+        if (value > 100) this.value = 100;
+        if (value < 0) this.value = 0;
+      });
+    });
+  </script>
+</body>
+</html>

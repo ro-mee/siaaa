@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>View Grades - Registrar Portal</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .grades-view {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .student-header {
+      background: #333;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 10px 10px 0 0;
+      display: flex;
+      justify-content: space-between;
+      margin: -20px -20px 20px -20px;
+    }
+    .subject-row {
+      margin-bottom: 25px;
+    }
+    .subject-name {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .grades-row {
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    .grade-item {
+      background: #333;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 5px;
+      min-width: 150px;
+    }
+    .grade-value {
+      margin-left: 10px;
+    }
+    .grade-value.pass {
+      color: #4CAF50;
+    }
+    .grade-value.fail {
+      color: #f44336;
+    }
+    .print-button {
+      background: #2196F3;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 20px auto;
+    }
+    .print-button:hover {
+      background: #1976D2;
+    }
+    .print-button img {
+      width: 24px;
+      height: 24px;
+    }
+    .back-button {
+      background: #666;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-button:hover {
+      background: #555;
+    }
+    .error-message {
+      background: #ffebee;
+      color: #c62828;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    @media print {
+      .sidebar, .print-button, .back-button, .error-message {
+        display: none;
+      }
+      .grades-view {
+        margin: 0;
+        padding: 0;
+      }
+      .main-content {
+        margin: 0;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="bcplogo.png" alt="School Logo" class="logo" />
+    <p class="email">registrar123@gmail.com</p>
+    <button class="nav-btn" onclick="window.location.href='index.html'">Students</button>
+    <button class="nav-btn" onclick="window.location.href='print.html'">Print Grades</button>
+    <button class="logout-btn">Log out</button>
+  </div>
+
+  <div class="main-content">
+    <h1>Welcome, Maam/Sir</h1>
+    <button class="back-button" onclick="window.location.href='print.html'">
+      ← Back to Student List
+    </button>
+    <div class="students-section">
+      <div id="errorMessage" class="error-message" style="display: none;">
+        No student selected. Please select a student from the list.
+      </div>
+      <div id="gradesView" class="grades-view" style="display: none;">
+        <div class="student-header">
+          <div>
+            <div>Name: <span id="studentNameDisplay"></span></div>
+            <div>Section & Course: <span id="sectionDisplay"></span></div>
+          </div>
+        </div>
+
+        <div class="subject-row">
+          <div class="subject-name">Information Management (CCS2205)</div>
+          <div class="grades-row">
+            <div class="grade-item">
+              Pre-lim: <span class="grade-value" id="im-prelim"></span>
+            </div>
+            <div class="grade-item">
+              Midterm: <span class="grade-value" id="im-midterm"></span>
+            </div>
+            <div class="grade-item">
+              Finals: <span class="grade-value" id="im-final"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="subject-row">
+          <div class="subject-name">Web Development (Advance Web / Platform) (WEB 2)</div>
+          <div class="grades-row">
+            <div class="grade-item">
+              Pre-lim: <span class="grade-value" id="web-prelim"></span>
+            </div>
+            <div class="grade-item">
+              Midterm: <span class="grade-value" id="web-midterm"></span>
+            </div>
+            <div class="grade-item">
+              Finals: <span class="grade-value" id="web-final"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="subject-row">
+          <div class="subject-name">System Integration and Architecture (CCS2111)</div>
+          <div class="grades-row">
+            <div class="grade-item">
+              Pre-lim: <span class="grade-value" id="sys-prelim"></span>
+            </div>
+            <div class="grade-item">
+              Midterm: <span class="grade-value" id="sys-midterm"></span>
+            </div>
+            <div class="grade-item">
+              Finals: <span class="grade-value" id="sys-final"></span>
+            </div>
+          </div>
+        </div>
+
+        <button class="print-button" onclick="window.print()">
+          Print
+          <img src="print.jpg" alt="Print Icon" />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include the grades data and functions -->
+  <script src="grades-data.js"></script>
+  
+  <script>
+    // Function to update grade display with color coding
+    function updateGradeDisplay(elementId, grade) {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.textContent = grade.toFixed(2);
+        element.className = 'grade-value ' + (isPassingGrade(grade) ? 'pass' : 'fail');
+      }
+    }
+
+    // Function to update all grades for a student
+    function updateAllGrades(grades) {
+      const subjects = ['im', 'web', 'sys'];
+      const terms = ['prelim', 'midterm', 'final'];
+      
+      subjects.forEach(subject => {
+        terms.forEach(term => {
+          updateGradeDisplay(`${subject}-${term}`, grades[subject][term]);
+        });
+      });
+    }
+
+    // Load and display student grades when the page loads
+    window.addEventListener('load', function() {
+      try {
+        const studentData = JSON.parse(sessionStorage.getItem('selectedStudent'));
+        if (!studentData || !studentData.id) {
+          throw new Error('No student selected');
+        }
+
+        document.getElementById('studentNameDisplay').textContent = studentData.name || 'N/A';
+        document.getElementById('sectionDisplay').textContent = studentData.section || 'N/A';
+
+        // Get and display the student's grades
+        const grades = getStudentGrades(studentData.id);
+        updateAllGrades(grades);
+
+        // Show the grades view
+        document.getElementById('gradesView').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'none';
+      } catch (error) {
+        console.error('Error loading student data:', error);
+        document.getElementById('gradesView').style.display = 'none';
+        document.getElementById('errorMessage').style.display = 'block';
+      }
+    });
+
+    // Navigation
+    document.querySelectorAll('.nav-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const href = this.getAttribute('onclick').match(/href='([^']+)'/)[1];
+        window.location.href = href;
+      });
+    });
+
+    // Logout functionality
+    document.querySelector('.logout-btn').addEventListener('click', function() {
+      sessionStorage.clear(); // Clear session data
+      window.location.href = 'index.html'; // Redirect to login page
+    });
+  </script>
+</body>
+</html> 
