@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Print Grades - Registrar Portal</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .select-btn {
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      min-width: 80px;
+      transition: background-color 0.2s;
+    }
+    .select-btn:hover {
+      background-color: #1976D2;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .header img {
+      width: 32px;
+      height: 32px;
+    }
+    .student-list {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .student-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.2s;
+    }
+    .student-row:hover {
+      background-color: #f5f5f5;
+    }
+    .student-row:last-child {
+      border-bottom: none;
+    }
+    .student-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .student-name {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 4px;
+    }
+    .student-section {
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="bcplogo.png" alt="School Logo" class="logo" />
+    <p class="email">registrar123@gmail.com</p>
+    <button class="nav-btn" onclick="window.location.href='index.html'">
+      Students
+      <img src="gradcap.png" alt="Graduation Cap" />
+    </button>
+    <button class="nav-btn">Print out 🖨️</button>
+    <button class="logout-btn">Log out</button>
+  </div>
+
+  <div class="main-content">
+    <h1>Welcome, Maam/Sir</h1>
+    <div class="students-section">
+      <div class="header">
+        <h2>Print Student Grades</h2>
+        <img src="print.jpg" alt="Print Icon" />
+      </div>
+      <div class="student-list">
+        <div class="student-row">
+          <div class="student-info">
+            <span class="student-name">Dela Cruz, Juan</span>
+            <span class="student-section">BSIT-2215</span>
+          </div>
+          <button class="select-btn" onclick="selectStudent('0', 'Dela Cruz, Juan', 'BSIT-2215')">View Grades</button>
+        </div>
+        <div class="student-row">
+          <div class="student-info">
+            <span class="student-name">James, LeBron Raymone</span>
+            <span class="student-section">BSIT-2215</span>
+          </div>
+          <button class="select-btn" onclick="selectStudent('1', 'James, LeBron Raymone', 'BSIT-2215')">View Grades</button>
+        </div>
+        <div class="student-row">
+          <div class="student-info">
+            <span class="student-name">Contis, Paulo</span>
+            <span class="student-section">BSIT-2215</span>
+          </div>
+          <button class="select-btn" onclick="selectStudent('2', 'Contis, Paulo', 'BSIT-2215')">View Grades</button>
+        </div>
+        <div class="student-row">
+          <div class="student-info">
+            <span class="student-name">Faulkerson, Richard Reyes</span>
+            <span class="student-section">BSIT-2215</span>
+          </div>
+          <button class="select-btn" onclick="selectStudent('3', 'Faulkerson, Richard Reyes', 'BSIT-2215')">View Grades</button>
+        </div>
+        <div class="student-row">
+          <div class="student-info">
+            <span class="student-name">Villanueva, Moskov</span>
+            <span class="student-section">BSIT-2215</span>
+          </div>
+          <button class="select-btn" onclick="selectStudent('4', 'Villanueva, Moskov', 'BSIT-2215')">View Grades</button>
+        </div>
+        <div class="student-row">
+          <div class="student-info">
+            <span class="student-name">Barrameda, Atlas</span>
+            <span class="student-section">BSIT-2215</span>
+          </div>
+          <button class="select-btn" onclick="selectStudent('5', 'Barrameda, Atlas', 'BSIT-2215')">View Grades</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Function to select a student and redirect to view grades
+    function selectStudent(studentId, name, section) {
+      // Store selected student info in sessionStorage
+      sessionStorage.setItem('selectedStudent', JSON.stringify({
+        id: studentId,
+        name: name,
+        section: section
+      }));
+      // Redirect to view-grades.html
+      window.location.href = 'view-grades.html';
+    }
+
+    // Logout functionality
+    document.querySelector('.logout-btn').addEventListener('click', function() {
+      sessionStorage.clear(); // Clear session data
+      window.location.href = 'index.html'; // Redirect to login page
+    });
+  </script>
+</body>
+</html> 

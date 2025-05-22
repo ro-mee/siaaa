@@ -1,0 +1,185 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.email {
+  font-size: 12px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.sidebar .nav-btn, .sidebar .logout-btn {
+      width: 80%;
+      margin: 8px 0;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #888;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-align: left;
+    }
+    .sidebar .nav-btn:hover, .sidebar .logout-btn:hover {
+      background: #555;
+    }
+    .sidebar .logout-btn {
+      margin-top: auto;
+      background: #b33;
+    }
+    .sidebar .logout-btn:hover {
+      background: #800;
+    }
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  background-color: #999;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav-btn img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.nav-btn.active {
+  background-color: #666;
+}
+
+.logout-btn {
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  background-color: #999;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.main-content {
+  flex: 1;
+  background-color: #2196F3;
+  padding: 30px;
+  color: white;
+}
+
+.students-section {
+  background: white;
+  color: black;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.student-list {
+  background: #ddd;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.student-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.manage-btn {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.subject-card {
+  background: whitesmoke;
+  color: #2196F3;
+  border: 2px solid #2196F3;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 1rem;
+  text-align: left;
+  text-decoration: none;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.subject-card:hover {
+  background: #2196F3;
+  color: #fff;
+  transform: translateY(-4px);
+  cursor: pointer;
+}
+
+.subject-icon {
+  font-size: 1.5rem;
+  display: inline-block;
+}
+
+.edit-btn {
+    display: inline-block;
+    background: #2196F3;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.edit-btn:hover {
+    background: #1976D2;
+}
+
+.passed {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.failed {
+    color: #dc3545;
+    font-weight: bold;
+}
